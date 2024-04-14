@@ -17,8 +17,15 @@
  * 0    => promise that will be fulfilled
  * 1    => promise that will be fulfilled
  */
-function getPromise(/* number */) {
-  throw new Error('Not implemented');
+function getPromise(number) {
+  const pr = new Promise((resolve, reject) => {
+    if (number < 0) {
+      reject();
+    } else {
+      resolve();
+    }
+  });
+  return pr;
 }
 
 /**
@@ -33,8 +40,10 @@ function getPromise(/* number */) {
  * Promise.resolve('success') => promise that will be fulfilled with 'success' value
  * Promise.reject('fail')     => promise that will be fulfilled with 'fail' value
  */
-function getPromiseResult(/* source */) {
-  throw new Error('Not implemented');
+function getPromiseResult(source) {
+  return source
+    .then(() => Promise.resolve('success'))
+    .catch(() => Promise.resolve('fail'));
 }
 
 /**
